@@ -2,7 +2,7 @@
     "name": "ask-cli-configure",
     "displayName": "Alexa Skills Kit (ASK) CLI Configure",
     "description": "Quickly access the ASK CLI config file.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "publisher": "mark-tucker",
     "license": "SEE LICENSE IN LICENSE.md",
     "icon": "images/icon.png",
