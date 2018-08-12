@@ -9,6 +9,7 @@ The extension adds commands for the following:
 * Discover ASK CLI commands by typing “ASK CLI” from the VS Code command palette
 * Open 'cli_config' file
 * Browse the online docs
+* Copy ASK profile name from 'cli_config'...
 
  
 ## Known Issues

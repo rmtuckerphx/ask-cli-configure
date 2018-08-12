@@ -9,7 +9,8 @@ const jsonUtility = require('./json-utility');
 module.exports = {
     checkASKProfileExist: checkASKProfileExist,
     deleteProfile: deleteProfile,
-    getListProfile: getListProfile
+    getListProfile: getListProfile,
+    getListASKProfiles: getListASKProfiles
 };
 
 function checkASKProfileExist(profileName) {
@@ -43,4 +44,21 @@ function getListProfile() {
         });
     }
     return printOut;
+}
+
+function getListASKProfiles() {
+    let askConfig = path.join(os.homedir(), '.ask', 'cli_config');
+    if (!fs.existsSync(askConfig)) {
+        return null;
+    }
+    let profileObject = jsonUtility.read(askConfig);
+    let profiles = profileObject.profiles;
+    if (!profiles || Object.keys(profiles).length === 0) {
+        return null;
+    }
+    let printOut = [];
+    for (let profile of Object.getOwnPropertyNames(profiles)) {
+        printOut.push(profile);
+    }
+    return printOut.sort();
 }

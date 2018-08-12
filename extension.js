@@ -5,6 +5,13 @@ const path = require('path');
 const os = require('os');
 const opn = require('opn');
 const fs = require('fs');
+const copyPaste = require("copy-paste");
+
+const profileHelper = require('./profile-helper');
+
+// const DEFAULT_PROFILE = 'default';
+// let statusBar;
+
 
 function openConfigFile(previewFlag = true) {
 
@@ -29,6 +36,19 @@ function openOnlineDocs() {
 
 }
 
+async function copyASKProfileNameFromCLIConfig() {
+
+    const profiles = profileHelper.getListASKProfiles();
+    const selectedProfile = await vscode.window.showQuickPick(profiles, { placeHolder: `Select ASK profile name.` });
+
+    if (selectedProfile) {
+        copyPaste.copy(selectedProfile, () => {
+            vscode.window.setStatusBarMessage(`'${selectedProfile}' copied to clipboard.`, 10000);
+        });
+    }
+
+}
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 
@@ -36,6 +56,9 @@ function activate(context) {
 
     context.subscriptions.push(vscode.commands.registerCommand('ask-cli.open.config', openConfigFile));
     context.subscriptions.push(vscode.commands.registerCommand('ask-cli.browse.docs', openOnlineDocs));
+
+    context.subscriptions.push(vscode.commands.registerCommand('ask-cli.copy.profile.cli_config', copyASKProfileNameFromCLIConfig));
+
 };
 
 

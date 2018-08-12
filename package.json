@@ -32,7 +32,8 @@
     },
     "activationEvents": [
         "onCommand:ask-cli.open.config",
-        "onCommand:ask-cli.browse.docs"
+        "onCommand:ask-cli.browse.docs",
+        "onCommand:ask-cli.copy.profile.cli_config"
     ],
     "main": "./extension",
     "contributes": {
@@ -44,7 +45,11 @@
             {
                 "command": "ask-cli.browse.docs",
                 "title": "ASK CLI: Browse online docs"
-            }
+            },
+            {
+                "command": "ask-cli.copy.profile.cli_config",
+                "title": "ASK CLI: Copy ASK profile name from 'cli_config'..."
+            }            
         ]
     },
     "scripts": {
